@@ -20,7 +20,7 @@ export const createStore = () => {
         }
     }
 
-    return store;
+    return store
 }
 
 export type TStore = ReturnType<typeof createStore>
