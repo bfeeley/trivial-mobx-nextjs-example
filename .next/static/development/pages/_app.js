@@ -18596,6 +18596,7 @@ __webpack_require__.r(__webpack_exports__);
 var Cities = ['Amsterdam', 'London', 'Madrid'];
 var createStore = function createStore() {
   var store = {
+    foo: mobx__WEBPACK_IMPORTED_MODULE_0__["observable"].box('Homepage Only'),
     query: mobx__WEBPACK_IMPORTED_MODULE_0__["observable"].box(''),
     setQuery: function setQuery(query) {
       store.query.set(query.toLowerCase());

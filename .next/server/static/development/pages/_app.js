@@ -363,6 +363,7 @@ __webpack_require__.r(__webpack_exports__);
 const Cities = ['Amsterdam', 'London', 'Madrid'];
 const createStore = () => {
   const store = {
+    foo: mobx__WEBPACK_IMPORTED_MODULE_0__["observable"].box('Homepage Only'),
     query: mobx__WEBPACK_IMPORTED_MODULE_0__["observable"].box(''),
 
     setQuery(query) {

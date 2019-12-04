@@ -93,6 +93,94 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
+/***/ "./components/context.tsx":
+/*!********************************!*\
+  !*** ./components/context.tsx ***!
+  \********************************/
+/*! exports provided: storeContext, StoreProvider, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "storeContext", function() { return storeContext; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StoreProvider", function() { return StoreProvider; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react-lite */ "mobx-react-lite");
+/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _stores_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../stores/store */ "./stores/store.ts");
+var _jsxFileName = "/Users/bfeele900/Documents/dev/lobbygg-next/components/context.tsx";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+const storeContext = react__WEBPACK_IMPORTED_MODULE_0___default.a.createContext(null);
+const StoreProvider = ({
+  children
+}) => {
+  const store = Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__["useLocalStore"])(_stores_store__WEBPACK_IMPORTED_MODULE_2__["createStore"]);
+  return __jsx(storeContext.Provider, {
+    value: store,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 11
+    },
+    __self: undefined
+  }, children);
+};
+/* harmony default export */ __webpack_exports__["default"] = (StoreProvider);
+
+/***/ }),
+
+/***/ "./hooks/useRootData.ts":
+/*!******************************!*\
+  !*** ./hooks/useRootData.ts ***!
+  \******************************/
+/*! exports provided: useRootData */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useRootData", function() { return useRootData; });
+/* harmony import */ var _components_context__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/context */ "./components/context.tsx");
+/* harmony import */ var _useStoreData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useStoreData */ "./hooks/useStoreData.ts");
+
+
+const useRootData = dataSelector => Object(_useStoreData__WEBPACK_IMPORTED_MODULE_1__["useStoreData"])(_components_context__WEBPACK_IMPORTED_MODULE_0__["storeContext"], contextData => contextData, dataSelector);
+
+/***/ }),
+
+/***/ "./hooks/useStoreData.ts":
+/*!*******************************!*\
+  !*** ./hooks/useStoreData.ts ***!
+  \*******************************/
+/*! exports provided: useStoreData */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useStoreData", function() { return useStoreData; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mobx-react-lite */ "mobx-react-lite");
+/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__);
+
+
+const useStoreData = (context, storeSelector, dataSelector) => {
+  const value = react__WEBPACK_IMPORTED_MODULE_0___default.a.useContext(context);
+
+  if (!value) {
+    throw new Error();
+  }
+
+  const store = storeSelector(value);
+  return Object(mobx_react_lite__WEBPACK_IMPORTED_MODULE_1__["useObserver"])(() => {
+    return dataSelector(store);
+  });
+};
+
+/***/ }),
+
 /***/ "./pages/index.tsx":
 /*!*************************!*\
   !*** ./pages/index.tsx ***!
@@ -106,26 +194,39 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "styled-components");
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _hooks_useRootData__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../hooks/useRootData */ "./hooks/useRootData.ts");
 var _jsxFileName = "/Users/bfeele900/Documents/dev/lobbygg-next/pages/index.tsx";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
+
 const Home = () => {
+  const {
+    foo
+  } = Object(_hooks_useRootData__WEBPACK_IMPORTED_MODULE_2__["useRootData"])(store => ({
+    foo: store.foo.get()
+  }));
   return __jsx(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 7
+      lineNumber: 12
     },
     __self: undefined
   }, __jsx(H1, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 8
+      lineNumber: 13
     },
     __self: undefined
-  }, "Hello world!"));
+  }, "Hello world!"), __jsx("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 14
+    },
+    __self: undefined
+  }, foo));
 };
 
 const H1 = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.h1.withConfig({
@@ -133,6 +234,39 @@ const H1 = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.h1.withConfi
   componentId: "fxyd84-0"
 })(["color:purple;"]);
 /* harmony default export */ __webpack_exports__["default"] = (Home);
+
+/***/ }),
+
+/***/ "./stores/store.ts":
+/*!*************************!*\
+  !*** ./stores/store.ts ***!
+  \*************************/
+/*! exports provided: createStore */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createStore", function() { return createStore; });
+/* harmony import */ var mobx__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! mobx */ "mobx");
+/* harmony import */ var mobx__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(mobx__WEBPACK_IMPORTED_MODULE_0__);
+
+const Cities = ['Amsterdam', 'London', 'Madrid'];
+const createStore = () => {
+  const store = {
+    foo: mobx__WEBPACK_IMPORTED_MODULE_0__["observable"].box('Homepage Only'),
+    query: mobx__WEBPACK_IMPORTED_MODULE_0__["observable"].box(''),
+
+    setQuery(query) {
+      store.query.set(query.toLowerCase());
+    },
+
+    get filteredCities() {
+      return Cities.filter(city => city.toLowerCase().includes(store.query.get()));
+    }
+
+  };
+  return store;
+};
 
 /***/ }),
 
@@ -145,6 +279,28 @@ const H1 = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.h1.withConfi
 
 module.exports = __webpack_require__(/*! /Users/bfeele900/Documents/dev/lobbygg-next/pages/index.tsx */"./pages/index.tsx");
 
+
+/***/ }),
+
+/***/ "mobx":
+/*!***********************!*\
+  !*** external "mobx" ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("mobx");
+
+/***/ }),
+
+/***/ "mobx-react-lite":
+/*!**********************************!*\
+  !*** external "mobx-react-lite" ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("mobx-react-lite");
 
 /***/ }),
 

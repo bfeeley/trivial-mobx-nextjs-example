@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -265,6 +265,7 @@ __webpack_require__.r(__webpack_exports__);
 const Cities = ['Amsterdam', 'London', 'Madrid'];
 const createStore = () => {
   const store = {
+    foo: mobx__WEBPACK_IMPORTED_MODULE_0__["observable"].box('Homepage Only'),
     query: mobx__WEBPACK_IMPORTED_MODULE_0__["observable"].box(''),
 
     setQuery(query) {
@@ -281,7 +282,7 @@ const createStore = () => {
 
 /***/ }),
 
-/***/ 5:
+/***/ 4:
 /*!********************************!*\
   !*** multi ./pages/events.tsx ***!
   \********************************/

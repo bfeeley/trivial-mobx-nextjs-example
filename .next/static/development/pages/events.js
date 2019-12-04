@@ -5409,6 +5409,7 @@ __webpack_require__.r(__webpack_exports__);
 var Cities = ['Amsterdam', 'London', 'Madrid'];
 var createStore = function createStore() {
   var store = {
+    foo: mobx__WEBPACK_IMPORTED_MODULE_0__["observable"].box('Homepage Only'),
     query: mobx__WEBPACK_IMPORTED_MODULE_0__["observable"].box(''),
     setQuery: function setQuery(query) {
       store.query.set(query.toLowerCase());
@@ -5426,7 +5427,7 @@ var createStore = function createStore() {
 
 /***/ }),
 
-/***/ 2:
+/***/ 1:
 /*!*************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fevents&absolutePagePath=%2FUsers%2Fbfeele900%2FDocuments%2Fdev%2Flobbygg-next%2Fpages%2Fevents.tsx ***!
   \*************************************************************************************************************************************************/
@@ -5449,5 +5450,5 @@ module.exports = dll_5f137288facb1107b491;
 
 /***/ })
 
-},[[2,"static/runtime/webpack.js"]]]);
+},[[1,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=events.js.map

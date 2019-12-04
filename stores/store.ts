@@ -8,6 +8,7 @@ const Cities = [
 
 export const createStore = () => {
     const store = {
+        foo: observable.box('Homepage Only'),
         query: observable.box(''),
         setQuery(query: string) {
             store.query.set(query.toLowerCase());
