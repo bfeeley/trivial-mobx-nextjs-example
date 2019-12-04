@@ -17,7 +17,7 @@ const Home: NextPage = () => {
 }
 
 const H1 = styled.h1`
-    color: purple;
+    color: ${p => p.theme.colors.primary};
 `;
 
 export default Home
