@@ -10,7 +10,7 @@ const theme = {
     }
 }
 
-const App = ({ Component, pageProps }: AppContext & AppInitialProps) => {
+const App = ({ Component, pageProps }: AppContext & AppInitialProps): JSX.Element => {
     return (
         <StoreProvider>
             <ThemeProvider theme={theme}>

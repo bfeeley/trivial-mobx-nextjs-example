@@ -1,10 +1,11 @@
-import Link from './link'
+import React from 'react'
+import Link from 'next/Link'
 
 const linkStyle = {
     marginRight: 15
 }
 
-const Header = () => (
+const Header = (): JSX.Element => (
     <div>
         <Link href="/">
             <a style={linkStyle}>Home</a>
